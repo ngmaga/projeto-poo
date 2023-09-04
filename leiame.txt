@@ -1,4 +1,4 @@
-1- não,apenas o requisito de pesquisar por nome não foi atendido.
+1-sim,todos os requisitos foram atendidos.
 2-  pode ser que haja um erro em "pesquisar contato por nome".
 3- o projeto foi feito individual.
 4- ocorreram bastantes dificuldidades em relação ao java script, demorei bastante tempo pesquisando para saber como fazia cada coisa. Mas foi um projeito proveitoso, de bastante aprendizado.
