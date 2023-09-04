@@ -1,0 +1,8 @@
+1- não,apenas o requisito de pesquisar por nome não foi atendido.
+2-  pode ser que haja um erro em "pesquisar contato por nome".
+3- o projeto foi feito individual.
+4- ocorreram bastantes dificuldidades em relação ao java script, demorei bastante tempo pesquisando para saber como fazia cada coisa. Mas foi um projeito proveitoso, de bastante aprendizado.
+5-sites ultilizados como fonte de pesquisa: 
+https://pt.stackoverflow.com/
+https://www.devmedia.com.br/
+https://developer.mozilla.org/
