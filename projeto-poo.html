@@ -20,7 +20,7 @@
                 <input  class="right input-field" type="text" id="nome" placeholder="Digite o nome" required><br><br>
 
                 <label class="left" for="telefone">Telefone:</label>
-                <input  class="right input-field" type="text" id="telefone"  placeholder="Digite o número" required><br><br>
+                <input  class="right input-field" type="number" id="telefone"  placeholder="Digite o número" required><br><br>
               
                 <label  class="left" for="email">Email:</label>
                 <input  class="right input-field" type="email" id="email"  placeholder="Digite o email"required><br><br>
@@ -41,75 +41,85 @@
 </fieldset>
 
     <script>
-        const fieldset = document.getElementById('contatoForm');
-        const nomeInput = document.getElementById('nome');
-        const telefoneInput = document.getElementById('telefone');
-        const emailInput = document.getElementById('email');
-        const agendaList = document.getElementById('agendaList');
-        const contatos = [];
+       class Contato {
+    constructor(nome, telefone, email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+    }
 
-        contatoForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+    // Método para verificar se o nome do contato contém a string de pesquisa
+    contemNome(pesquisa) {
+        return this.nome.toLowerCase().includes(pesquisa.toLowerCase());
+    }
+}
 
-            const nome = nomeInput.value;
-            const telefone = telefoneInput.value;
-            const email = emailInput.value;
+const fieldset = document.getElementById('contatoForm');
+const nomeInput = document.getElementById('nome');
+const telefoneInput = document.getElementById('telefone');
+const emailInput = document.getElementById('email');
+const agendaList = document.getElementById('agendaList');
+const contatos = [];
 
-            const contato = {
-                nome,
-                telefone,
-                email,
-            };
+fieldset.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-            contatos.push(contato);
-            listaAtualizada();
-            contatoForm.reset();
-        });
+    const nome = nomeInput.value;
+    const telefone = telefoneInput.value;
+    const email = emailInput.value;
 
-        function listaAtualizada() {
-            agendaList.innerHTML = '';
+    const contato = new Contato(nome, telefone, email);
 
-            contatos.forEach((contato, index) => {
-                const li = document.createElement('li');
-                li.classList.add('contato-item');
-                li.innerHTML = `
-                    <strong>Nome:</strong> ${contato.nome}<br>
-                    <strong>Telefone:</strong> ${contato.telefone}<br>
-                    <strong>Email:</strong> ${contato.email}<br>
-                    <button class="botao-edicao" onclick="editarContato(${index})">Editar</button>
-                    <button class="botao-excluir" onclick="excluirContato(${index})">Excluir</button>
-                `;
-                agendaList.appendChild(li);
-            });
-        }
+    contatos.push(contato);
+    listaAtualizada();
+    fieldset.reset();
+});
 
-        function editarContato(index) {
-            const nomeEditado = prompt('Digite o novo nome:');
-            const telefoneEditado = prompt('Digite o novo telefone:');
-            const emailEditado = prompt('Digite o novo email:');
+function listaAtualizada() {
+    agendaList.innerHTML = '';
 
-            contatos[index].nome = nomeEditado;
-            contatos[index].telefone = telefoneEditado;
-            contatos[index].email = emailEditado;
+    contatos.forEach((contato, index) => {
+        const li = document.createElement('li');
+        li.classList.add('contato-item');
+        li.innerHTML = `
+            <strong>Nome:</strong> ${contato.nome}<br>
+            <strong>Telefone:</strong> ${contato.telefone}<br>
+            <strong>Email:</strong> ${contato.email}<br>
+            <button class="botao-edicao" onclick="editarContato(${index})">Editar</button>
+            <button class="botao-excluir" onclick="excluirContato(${index})">Excluir</button>
+        `;
+        agendaList.appendChild(li);
+    });
+}
 
-            listaAtualizada();
-        }
+function editarContato(index) {
+    const nomeEditado = prompt('Digite o novo nome:');
+    const telefoneEditado = prompt('Digite o novo telefone:');
+    const emailEditado = prompt('Digite o novo email:');
 
-        function excluirContato(index) {
-            contatos.splice(index, 1);
-            listaAtualizada();
-        }
+    contatos[index].nome = nomeEditado;
+    contatos[index].telefone = telefoneEditado;
+    contatos[index].email = emailEditado;
 
-        function pesquisarContato() {
-            const searchInput = document.getElementById('searchNome').value.toLowerCase();
-            const filteredContatos = contatos.filter(contato => contato.nome.toLowerCase().includes(searchInput));
+    listaAtualizada();
+}
 
-            if (filteredContatos.length === 0) {
-                agendaList.innerHTML = '<li>Nenhum contato encontrado.</li>';
-            } else {
-                listaAtualizada(filteredContatos);
-            }
-        }
+function excluirContato(index) {
+    contatos.splice(index, 1);
+    listaAtualizada();
+}
+
+function pesquisarContato() {
+    const searchInput = document.getElementById('searchNome').value.toLowerCase();
+    const filteredContatos = contatos.filter(contato => contato.contemNome(searchInput));
+
+    if (filteredContatos.length === 0) {
+        agendaList.innerHTML = '<li>Nenhum contato encontrado.</li>';
+    } else {
+        listaAtualizada(filteredContatos);
+    }
+}
+
     </script>
 </body>
 </html>
