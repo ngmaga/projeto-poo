@@ -164,12 +164,16 @@ tipoContatoSelect.addEventListener('change', function () {
     aniversarioInput.style.display = 'none';
     departamentoInput.style.display = 'none';
 
-    if (selectedValue === 'cliente') {
+     if (selectedValue === 'cliente') {
         empresaInput.style.display = 'block';
     } else if (selectedValue === 'amigo') {
         aniversarioInput.style.display = 'block';
     } else if (selectedValue === 'colega') {
         departamentoInput.style.display = 'block';
+    } else if (selectedValue === 'outros'){
+        empresaInput.style.display = 'none';
+        aniversarioInput.style.display = 'none';
+        departamentoInput.style.display = 'none';
     }
 });
 
