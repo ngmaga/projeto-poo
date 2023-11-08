@@ -1,5 +1,5 @@
 1-sim,todos os requisitos foram atendidos.
-2-  pode ser que haja um erro em "pesquisar contato por nome".
+2- não possui erro.
 3- o projeto foi feito em dupla.
 4- ocorreram algumas dificuldidades em relação ao java script, demoramos bastante tempo pesquisando para saber como fazia cada coisa. Mas foi um projeito proveitoso, de bastante aprendizado.
 5-sites ultilizados como fonte de pesquisa: 
@@ -8,4 +8,5 @@ https://www.devmedia.com.br/
 https://developer.mozilla.org/
 
 -- integrantes: 
-nicoly grazielle 
+nicoly grazielle : responsável pela implementação de classes e metódos, resumidamente, responsável pelo JavaScript. 
+rayca rafaelle : responsável pela interfaxe do projeto, resumidamente, responsável pelo html e css. 
