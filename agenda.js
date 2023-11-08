@@ -4,27 +4,21 @@ class Contato {
         this._telefone = telefone;
         this._email = email;
     }
-
     get nome() {
         return this._nome;
     }
-
     set nome(nome) {
         this._nome = nome;
     }
-
     get telefone() {
         return this._telefone;
     }
-
     set telefone(telefone) {
         this._telefone = telefone;
     }
-
     get email() {
         return this._email;
     }
-
     set email(email) {
         this._email = email;
     }
@@ -32,22 +26,32 @@ class Contato {
     contemNome(pesquisa) {
         return this._nome.toLowerCase().includes(pesquisa.toLowerCase());
     }
+
+    editarContato(index) {
+    const nomeEditado = prompt('Digite o novo nome:');
+    const telefoneEditado = prompt('Digite o novo telefone:');
+    const emailEditado = prompt('Digite o novo email:');
+    contatos[index].nome = nomeEditado;
+    contatos[index].telefone = telefoneEditado;
+    contatos[index].email = emailEditado;
+
+    listaAtualizada();
 }
+
+}
+
 
 class Cliente extends Contato {
     constructor(nome, telefone, email, empresa) {
         super(nome, telefone, email);
         this._empresa = empresa;
     }
-
     get empresa() {
         return this._empresa;
     }
-
     set empresa(empresa) {
         this._empresa = empresa;
     }
-
 }
 
 class Amigo extends Contato {
@@ -55,15 +59,12 @@ class Amigo extends Contato {
         super(nome, telefone, email);
         this._dataAniversario = dataAniversario;
     }
-
     get dataAniversario() {
         return this._dataAniversario;
     }
-
     set dataAniversario(dataAniversario) {
         this._dataAniversario = dataAniversario;
     }
-
 }
 
 class ColegaDeTrabalho extends Contato {
@@ -71,11 +72,9 @@ class ColegaDeTrabalho extends Contato {
         super(nome, telefone, email);
         this._departamento = departamento;
     }
-
     get departamento() {
         return this._departamento;
     }
-
     set departamento(departamento) {
         this._departamento = departamento;
     }
@@ -102,13 +101,12 @@ function listaAtualizada() {
     contatos.forEach((contato, index) => {
         const li = document.createElement('li');
         li.classList.add('contato-item');
-
+        
         li.innerHTML = `
       <strong>Nome:</strong> ${contato.nome}<br>
       <strong>Telefone:</strong> ${contato.telefone}<br>
       <strong>Email:</strong> ${contato.email}<br>
     `;
-
         // Verifica o tipo de contato e inclui as informações específicas
         console.log(contato)
         if (contato instanceof Cliente) {
@@ -123,14 +121,14 @@ function listaAtualizada() {
       <button class="botao-edicao" onclick="editarContato(${index})">Editar</button>
       <button class="botao-excluir" onclick="excluirContato(${index})">Excluir</button>
     `;
-
         agendaList.appendChild(li);
     });
 }
 
+
 fieldset.addEventListener('submit', function (e) {
     e.preventDefault();
-   
+    
     const nome = nomeInput.value;
     const telefone = telefoneInput.value;
     const email = emailInput.value;
@@ -156,7 +154,6 @@ fieldset.addEventListener('submit', function (e) {
     fieldset.reset();
 });
 
-
 tipoContatoSelect.addEventListener('change', function () {
     const selectedValue = tipoContatoSelect.value;
     // Ocultar todos os campos antes de mostrar o campo relevante
@@ -164,7 +161,8 @@ tipoContatoSelect.addEventListener('change', function () {
     aniversarioInput.style.display = 'none';
     departamentoInput.style.display = 'none';
 
-     if (selectedValue === 'cliente') {
+
+    if (selectedValue === 'cliente') {
         empresaInput.style.display = 'block';
     } else if (selectedValue === 'amigo') {
         aniversarioInput.style.display = 'block';
@@ -177,26 +175,10 @@ tipoContatoSelect.addEventListener('change', function () {
     }
 });
 
-function editarContato(index) {
-    const nomeEditado = prompt('Digite o novo nome:');
-    const telefoneEditado = prompt('Digite o novo telefone:');
-    const emailEditado = prompt('Digite o novo email:');
-
-
-    contatos[index].nome = nomeEditado;
-    contatos[index].telefone = telefoneEditado;
-    contatos[index].email = emailEditado;
-
-
-    listaAtualizada();
-}
-
-
 function excluirContato(index) {
     contatos.splice(index, 1);
     listaAtualizada();
 }
-
 
 function pesquisarContato() {
     const searchNome = pesquisarInput.value;
@@ -212,3 +194,4 @@ function pesquisarContato() {
         alert(`O contato com o nome "${searchNome}" não existe!`);
     }
 }
+
